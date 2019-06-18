@@ -1,0 +1,19 @@
+import java.util.Scanner;
+
+public class GradeBookTest {
+	
+	public Static void main (String[] args) {
+
+	Scanner input = new Scanner(System.in);
+
+	GradeBook myGradeBook = new GradeBook();
+
+	System.out.print("Please enter course name: ");
+
+	String couseName = input.nextLine();
+
+	System.out.printIn();
+
+	myGradeBook.setcoursename(coursename);
+	myGradeBook.displayMessage();
+	}
