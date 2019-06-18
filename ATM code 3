@@ -1,0 +1,105 @@
+import javax.swing.JOptionPane;
+class ATM
+{
+	public static void main (String args [])
+	{
+		String str, str1;
+		int choice,z,pin=1234,counter=0,a=3;
+		double w,d,bal=1000;
+
+			JOptionPane.showMessageDialog(null,"Welcome to BDO \"We Find Ways\" ATM Online \n\n                      Please Insert Card");
+		 do
+		 {
+			str = JOptionPane.showInputDialog(null, "Please Enter your 4-digit PIN:", "Welcome to BDO \"We Find Ways\" ATM Online!", 1);
+			pin = Integer.parseInt(str);
+				counter+=1;
+
+			if (pin==1234)
+				do
+				{ str = JOptionPane.showInputDialog(null,"[1]Balance Inquiry \n[2]Deposit \n[3]Withdraw \n[4]EXIT \n\nPlease Enter Choice:","PLEASE SELECT A TRANSACTION",3);
+				choice = Integer.parseInt(str);
+
+				switch (choice)
+				{
+					case 1: JOptionPane.showMessageDialog(null,"Your Balance is: " + bal);
+					z=JOptionPane.showConfirmDialog(null,"Another Transaction?","BDO", JOptionPane.YES_NO_OPTION, 3);
+					if (z==0)
+						break;
+					else
+					    JOptionPane.showMessageDialog(null,"Thank you for using BDO \"We Find Ways\" ATM Online \nPlease Get Your Card");
+						System.exit(0);
+
+					case 2: str1 = JOptionPane.showInputDialog(null,"Please Enter Amount: " );
+						d = Integer.parseInt(str1);
+						if (d%100!=0)
+						JOptionPane.showMessageDialog(null,"This ATM doesn't accept coins \nPlease Try Again","Transaction Failed",0);
+						else if (d<2000)
+						JOptionPane.showMessageDialog(null,"The Minimum Amount to be Deposit is P2000.00","ERROR",0);
+						else if (d>=2000)
+						{bal = bal+d;
+						JOptionPane.showMessageDialog(null,"Your Balance is: " + bal);}
+
+						z=JOptionPane.showConfirmDialog(null,"Another Transaction?","BDO", JOptionPane.YES_NO_OPTION, 3);
+						if (z==0)
+						break;
+						else
+					    JOptionPane.showMessageDialog(null,"Thank you for using \"We Find Ways\" ATM Online \nPlease Get Your Card");
+						System.exit(0);
+
+					case 3: str1 = JOptionPane.showInputDialog(null,"Please Enter Amount: " );
+						w = Integer.parseInt(str1);
+						if (w%100!=0)
+						JOptionPane.showMessageDialog(null,"This ATM doesn't issue coins \nPlease Try Again","Transaction Failed",0);
+						else
+						{
+						if (w>bal)
+						JOptionPane.showMessageDialog(null,"You do not have enough money \nPlease Deposit Immediately","Transaction Failed",0);
+						else if (w<200)
+						JOptionPane.showMessageDialog(null,"The Minimum Amount to be Withdrawn is P200.00","Transaction Failed",0);
+						else
+						{
+						bal = bal-w;
+						JOptionPane.showMessageDialog(null,"Your Balance is: " + bal);
+						if (bal<=1000)
+						JOptionPane.showMessageDialog(null,"The Maintaining Balance is P1000.00, Please Deposit Immediately To Avoid Account Closure","CAUTION",2);
+						}
+						}
+						z=JOptionPane.showConfirmDialog(null,"Another Transaction?","BDO", JOptionPane.YES_NO_OPTION, 3);
+						if (z==0)
+						break;
+						else
+					    JOptionPane.showMessageDialog(null,"Thank you for using \"BDO We Find Ways\" ATM Online \nPlease Get Your Card");
+						System.exit(0);
+
+					case 4: z=JOptionPane.showConfirmDialog(null,"Are you sure you want to exit?","EXIT", JOptionPane.YES_NO_OPTION, 0);
+					if (z==0)
+					{ JOptionPane.showMessageDialog(null,"Thank you for using \"BDO We Find Ways\" ATM Online \nPlease Get Your Card");
+						System.exit(0);
+					}
+					else
+						break;
+					default: JOptionPane.showMessageDialog(null,"Invalid Entry\nPlease Try Again","ERROR",0);
+				}
+				}
+				while (1==1);
+
+			else if (counter<3)
+				{
+					 a--;
+
+				JOptionPane.showMessageDialog(null,"Invalid Pin\nPlease Try Again","ERROR",0);
+				JOptionPane.showMessageDialog(null,"\nYou have " + a + " trial/s remaining" + "\n");
+				}
+				else
+				{JOptionPane.showMessageDialog(null,"For assistance,\nPlease call our hotline 8-7000 (toll free)","YOUR CARD HAS BEEN CAPTURED!",0);
+				System.exit(0);}
+		}
+		while (1==1);
+	}
+}
+Chat Conversation End
+Type a message...
+
+
+
+More stories loaded.
