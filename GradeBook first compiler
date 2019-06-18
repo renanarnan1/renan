@@ -1,0 +1,16 @@
+public class GradeBook{
+
+	private String coursename;
+
+	public void setcoursename (String name){
+
+		coursename = name;
+
+	}
+	public String getcoursename(){
+		return coursename;
+	}
+	public void displayMessage(){
+		System.out.printf("Welcome to your GradeBook for %s!", getcoursename());
+	}
+}
