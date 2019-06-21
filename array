@@ -1,0 +1,20 @@
+Largest class.java;
+import java.util.Scanner;
+
+    public class Largest Class{
+    
+      Scanner input = new Scanner(System.in);
+      
+      /* call if you have an array
+      /*
+      public void inputArray(){
+      
+      System.out.print("Inpuut # of elements: ");
+      final int arraySize = input.nextInt();
+      int[] numberArray = new int[arraySize];
+      
+      System.out.printf("Input %d elements:\n" ,arraySize);
+      for(int i=0, i<arraySize, i++){
+      
+        }
+      }
