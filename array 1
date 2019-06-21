@@ -4,4 +4,7 @@ public class Largest{
 
     public static void main(String[] args){
     
+    LargestClass numberLasgest = new LargestClass();
+    
+    numberLargest.inputArray();
     
