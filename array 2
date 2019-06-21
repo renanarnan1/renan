@@ -1,0 +1,23 @@
+public void largestNumber(int[]arrayy, int size){
+      int largest = arrayy[0];
+      for(int i=0; i<size; i++){
+      
+        if(arrayy[i] > largest){
+        
+            largest = arrayy[i];
+       }
+}
+
+System.out.printf("Largest is %d", largest);
+}
+
+  int = 0
+  
+do{
+  if(arrayy[i] > largest){
+  
+    largest = arrayy[i];
+    
+    i++;
+    }
+} while (i<size)
