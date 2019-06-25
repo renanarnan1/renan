@@ -10,7 +10,7 @@ class ATM
 			JOptionPane.showMessageDialog(null,"Welcome to BDO \"We Find Ways\" ATM Online \n\n                      Please Insert Card");
 		 do
 		 {
-			str = JOptionPane.showInputDialog(null, "Please Enter your 4-digit PIN:", "Welcome to BDO \"We Find Ways\" ATM Online!", 1);
+			str = JOptionPane.showInputDialog(null, "Please Enter your 4-digit PIN:", "WFWAC We Find Ways ATM Company" ATM Online!", 1);
 			pin = Integer.parseInt(str);
 				counter+=1;
 
@@ -22,11 +22,11 @@ class ATM
 				switch (choice)
 				{
 					case 1: JOptionPane.showMessageDialog(null,"Your Balance is: " + bal);
-					z=JOptionPane.showConfirmDialog(null,"Another Transaction?","BDO", JOptionPane.YES_NO_OPTION, 3);
+					z=JOptionPane.showConfirmDialog(null,"Another Transaction?","WFWAC", JOptionPane.YES_NO_OPTION, 3);
 					if (z==0)
 						break;
 					else
-					    JOptionPane.showMessageDialog(null,"Thank you for using BDO \"We Find Ways\" ATM Online \nPlease Get Your Card");
+					    JOptionPane.showMessageDialog(null,"Thank you for using WFWAC \"We Find Ways ATM Company\" ATM Online \nPlease Get Your Card");
 						System.exit(0);
 
 					case 2: str1 = JOptionPane.showInputDialog(null,"Please Enter Amount: " );
@@ -39,7 +39,7 @@ class ATM
 						{bal = bal+d;
 						JOptionPane.showMessageDialog(null,"Your Balance is: " + bal);}
 
-						z=JOptionPane.showConfirmDialog(null,"Another Transaction?","BDO", JOptionPane.YES_NO_OPTION, 3);
+						z=JOptionPane.showConfirmDialog(null,"Another Transaction?","WFWAC", JOptionPane.YES_NO_OPTION, 3);
 						if (z==0)
 						break;
 						else
@@ -64,16 +64,16 @@ class ATM
 						JOptionPane.showMessageDialog(null,"The Maintaining Balance is P1000.00, Please Deposit Immediately To Avoid Account Closure","CAUTION",2);
 						}
 						}
-						z=JOptionPane.showConfirmDialog(null,"Another Transaction?","BDO", JOptionPane.YES_NO_OPTION, 3);
+						z=JOptionPane.showConfirmDialog(null,"Another Transaction?","WFWAC", JOptionPane.YES_NO_OPTION, 3);
 						if (z==0)
 						break;
 						else
-					    JOptionPane.showMessageDialog(null,"Thank you for using \"BDO We Find Ways\" ATM Online \nPlease Get Your Card");
+					    JOptionPane.showMessageDialog(null,"Thank you for using \"WFWAC We Find Ways ATM Company\" ATM Online \nPlease Get Your Card");
 						System.exit(0);
 
 					case 4: z=JOptionPane.showConfirmDialog(null,"Are you sure you want to exit?","EXIT", JOptionPane.YES_NO_OPTION, 0);
 					if (z==0)
-					{ JOptionPane.showMessageDialog(null,"Thank you for using \"BDO We Find Ways\" ATM Online \nPlease Get Your Card");
+					{ JOptionPane.showMessageDialog(null,"Thank you for using \"WFWAC We Find Ways\" ATM Online \nPlease Get Your Card");
 						System.exit(0);
 					}
 					else
