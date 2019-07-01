@@ -5,7 +5,7 @@ class ATM
 	{
 		String str, str1;
 		int choice,z,pin=1234,counter=0,a=3;
-		double w,d,bal=1000;
+		double w,d,bal=00.00;
 
 			JOptionPane.showMessageDialog(null,"Welcome to WFWAC \"We Find Ways ATM Company\" ATM Online \n\n                      Please Insert Card");
 		 do
