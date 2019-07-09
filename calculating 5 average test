@@ -1,0 +1,205 @@
+import javax.swing.JOptionPane; //Needed for GUI
+
+import java.text.DecimalFormat; //needed to format the Output
+
+
+
+
+
+public class DTTestAverageAndGrade
+
+{//Begin class
+
+public static void main(String[] args)
+
+{//Begin main method
+
+
+
+    String inputString;   //For reader's input
+
+    double Score1,       //Define score1
+
+           Score2,      //Define  score2
+
+           Score3,     //Define   score3
+
+           Score4,    //Define    score4
+           Score5,   //Define     score5
+           Average ;//Define      Average
+
+
+
+DecimalFormat formatter = new DecimalFormat("#,##0.0"); //format the scores
+
+
+
+    // Get the five scores
+
+    inputString=
+
+      JOptionPane.showInputDialog("Enter the First Test Score: "); //ask user to enter the first test score
+
+    Score1 = Double.parseDouble(inputString);
+
+
+
+    inputString=
+
+      JOptionPane.showInputDialog("Enter the Second Test Score: ");//ask user to enter the second test score
+
+    Score2 = Double.parseDouble(inputString);
+
+
+
+    inputString=
+
+      JOptionPane.showInputDialog("Enter the third test score: ");//ask user to enter the third test score
+
+    Score3 = Double.parseDouble(inputString);
+
+
+
+    inputString=
+
+      JOptionPane.showInputDialog("Enter the fourth test score: ");//ask user to enter the fourth test score
+
+    Score4 = Double.parseDouble(inputString);
+
+
+
+    inputString=
+
+      JOptionPane.showInputDialog("Enter the fifth test score: ");//ask user to enter the fifth test score
+
+    Score5 = Double.parseDouble(inputString);
+
+
+
+    // Call to method calcAverage and output the 5 test average
+
+      Average = calcAverage(Score1, Score2, Score3, Score4, Score5);
+
+
+
+
+
+
+
+    // Display Average test Score and Determine the letter grade for each test and call to determineGrade
+
+
+
+            JOptionPane.showMessageDialog(null, "\t\nYour Score 1  is : " +formatter.format(Score1)  +"\t Grade: " + determineGrade(Score1)
+
+                                              + "\t\nYour Score 2  is : " +formatter.format(Score2)  +"\t Grade: " + determineGrade(Score2)
+
+                                              + "\t\nYour Score 3  is : " +formatter.format(Score3)  +"\t Grade: " + determineGrade(Score3)
+
+                                              + "\t\nYour Score 4  is : " +formatter.format(Score4)  +"\t Grade: " + determineGrade(Score4)
+
+                                              + "\t\nYour Score 5  is : " +formatter.format(Score5)  +"\t Grade: " + determineGrade(Score5)
+
+                                           + "\t\nYour Average  is : " +formatter.format(Average) +"\t Grade: " + determineGrade(Average),
+
+                                                "\tYour Test Results",JOptionPane.INFORMATION_MESSAGE);
+
+
+
+    }//end Main method
+
+
+
+    // Calculate the average of the five test scores
+
+    public static double calcAverage(double Score1, double Score2, double Score3, double Score4, double Score5)
+
+    {
+
+        double Average = ((Score1 + Score2 + Score3 + Score4 + Score5) / 5);
+
+        return Average;
+
+    }
+
+
+
+    // Determine the letter grade for the average and 5 test scores
+
+   public static double determineGrade(double Average)
+
+    {
+
+        char grade; // Define grade
+
+
+
+        // Determine letter grade
+
+     if (Average>=90)
+
+        {
+
+            grade = 'A';
+
+            JOptionPane.showMessageDialog(null, grade + "\n");
+
+     }
+
+        else if (Average>=80)
+
+        {
+
+            grade = 'B';
+
+            JOptionPane.showMessageDialog(null, grade + "\n");
+
+        }
+
+        else if (Average>=70)
+
+        {
+
+            grade = 'C';
+
+           JOptionPane.showMessageDialog(null, grade + "\n");
+
+        }
+
+        else if (Average>=60)
+
+        {
+
+            grade = 'D';
+
+            JOptionPane.showMessageDialog(null, grade + "\n");
+
+        }
+
+        else if (Average<60)
+
+        {
+
+            grade = 'F';
+
+            JOptionPane.showMessageDialog(null, grade + "\n");
+
+      }
+
+        else
+
+        {
+
+            JOptionPane.showMessageDialog(null, "error\n");
+
+        }
+
+
+
+        return 0;
+
+
+
+    }//end determinegrade method
+
+}//end class
