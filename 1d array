@@ -1,0 +1,50 @@
+import javax.swing.JOptionPane;
+import java.util.ArrayList ;
+
+public class sample1 {
+
+    final static int ELEMENTS = 5 ;
+    final static int UPPER_BOUND = 100 ;
+    final static int LOWER_BOUND= 10 ;
+
+
+    public static void main(String[] args) {
+
+
+        int number = 0; 
+
+        while ( true ) 
+        {
+
+            ArrayList <Integer> vector = new ArrayList <Integer> (5) ; 
+
+            for ( int i = 0 ; 
+                    i < ELEMENTS 
+                    && ( number = gimmeValue() ) >= LOWER_BOUND 
+                    && number <= UPPER_BOUND 
+                            ; i++ ) 
+            {
+
+                if ( !vector.contains(number) )
+                    vector.add(number) ; 
+
+                String elements = "" ;
+
+                for ( int notRepeatedElement : vector )
+                    elements += String.valueOf(notRepeatedElement) + '\n' ;
+
+                JOptionPane.showMessageDialog(null, elements);
+            }
+            if ( number < LOWER_BOUND || number > UPPER_BOUND )
+                break ; 
+        }
+    }
+
+    public static int gimmeValue () 
+    {
+
+        String number = JOptionPane.showInputDialog("Enter a number between 10 and 100:") ;
+        return Integer.valueOf(number) ;
+
+    }
+}
