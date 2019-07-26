@@ -46,5 +46,19 @@ public class ClassMethod{
                     j++;
                    }
                  }
-                   
+                   if(sim==1){
+                   arr2[i]=arr[i];
+                   for(int k=0, k<5; l++){
+                        if(arr2[k]==0){
+                        
+                        }
+                        else{
+                            System.out.printf("%d\t", arr2[k]);
+                            }
+                         else{ // else if(sim>=2){
+                         for(int k=0, k<5, k++){
+                         }
+                    }
+              }
+}
                         
