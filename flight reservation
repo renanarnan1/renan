@@ -1,0 +1,90 @@
+import java.util.Scanner;
+ 
+public class Plane 
+ 
+{ public void checkln()
+	{
+    Scanner input = new Scanner( System.in );
+    
+    boolean seats[] = new boolean[ 10 ];
+    int firstClass = 0;
+    int economy = 5;
+    while (( firstClass < 5) || ( economy < 10 ))	
+    
+    {
+    	System.out.println( "Please type 1 for First Class");
+    	System.out.println( "Please type 2 for Second Class");
+    	System.out.print("Choice: ");
+    	int section = input.nextInt();
+    	if ( section == 1 )
+{
+            if ( firstClass < 5 )
+{
+               firstClass++;
+               System.out.printf( "\nSeat number is #%d.\nSeat resides in First Class.\n" , firstClass );
+}
+            else if ( economy < 10 )
+           
+{
+               System.out.println(
+                  "First Class is full. Would you like a seat in economy?" );
+               System.out.print( "Please select 1 (Yes) or 2 (No): " );
+               
+               int choice = input.nextInt();
+ 
+               if ( choice == 1 )
+{
+                  economy++;
+                  System.out.printf("\nSeat number is #%d.\nSeat resides in Economy.\n", economy );
+}
+               else
+                  System.out.println( "Next flight leaves in 3 hours." );
+}
+}
+         else if ( section == 2 )
+{
+            if ( economy < 10 ) 
+{
+               economy++;
+               System.out.printf( "\nSeat number is #%d.\nSeat resides in Economy.\n", economy );
+}
+            else if ( firstClass < 5 )
+{
+               System.out.println(
+                  "Economy is full. Would you like a seat in First Class?" );
+               System.out.print( "Please select 1 (Yes) or 2 (No): " );
+               int choice = input.nextInt();
+ 
+               if ( choice == 1 )
+{
+                  firstClass++;
+                  System.out.printf( "\nSeat number is #%d.\nSeat resides in First Class.\n",
+                     firstClass );
+}
+               else
+                  System.out.println( "Next flight leaves in 3 hours." );
+                  
+ 
+                  
+}
+}
+         
+         System.out.println();
+         
+}
+		 System.out.println( "We are sorry but the plane is full.");
+}
+}
+
+
+
+
+//
+public class PlaneTest
+{
+	public static void main( String args[])
+	{
+		Plane application = new Plane();
+		application.checkln();
+	}
+}
