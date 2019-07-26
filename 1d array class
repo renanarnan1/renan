@@ -1,0 +1,50 @@
+public class MainClass{
+
+    public static void main(String[] args){
+    
+      ClassMethod className = new ClassMethod();
+      className.duplicate();
+      }
+}
+
+
+
+
+
+import java.util.Scanner;
+
+public class ClassMethod{
+    public void duplicate(){
+              
+              int[]arr={0,0,0,0,0}
+              int[]arr2 = new int[5];
+              
+              Scanner input = new Scanner(System.in);
+              for(int i=0, i<5, i++){ //array0
+                  System.out.printf("Input number %d: ", i+1);
+                  
+                  int q = 0;
+                  
+                  while(q==0){ // <10 >100
+                    arr[i]=input.nextInt();
+                    
+                    if(arr[]<10 || arr[i]>100){
+                      system.out.printIn("error....")
+                      q=0;
+                      
+                   }
+                   else{
+                    int sim = 0;
+                    int j = 0;
+                    
+                    while(j<5){
+                      if(arr[j]==arr[i]){
+                        sim++;
+                        j++;
+                   }
+                    else{
+                    j++;
+                   }
+                 }
+                   
+                        
