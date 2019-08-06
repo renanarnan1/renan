@@ -1,48 +1,29 @@
-import java.util.Random;
-public class Seats{
-    private int final NUMBER_OF_SEATS = 10;
-    private boolean[] seats;
-    private int firstSeat;
-    private int secondSeat;
-    Random randomNumbers = new Random();
-    //constructor
-    public Seats(){
-        //initializing array
-        seats = new boolean[ NUMBER_OF_SEATS ];
-        //set values to false - doesn't it do automatically?
-        for( int counter = 0; counter < seats.length; counter++ ){
-            seats[ counter ] = false;
-        }//end of loop      
-    }//end of constructor
-    public void assignSeats( int seatClass ){
-        if( seatClass == 1 ){
-            for( int counter = 0; counter < seats.length / 2; counter++ ){
-                //generate random number between 1 and 5
-                firstSeat = 1 + randomNumbers.nextInt(5);
-                seats[ firstSeat - 1 ] = true;//firstSeat - 1 to make sure the right element is selected
-            }
-        }
-        else if( seatClass == 2 ){
-            for( int counter = 0; counter < seats.length / 2; counter++ ){
-            //generates numbers between 6 and 10
-            secondSeat = 6 + randomNumbers.nextint(5);
-            seats[ secondSeat - 1 ] = true;//secondSeat - 1 to make sure the right element is selected
-        }
-    }
-}
-
-
-
-import javax.swing.JOptionPane;
-public class SeatsTest{
-    public static void main( String[] args ){
-        Seats seatingPlan = new Seats();
-        //display message
-        String action = JOptionPane.showInputDialog( "Please type 1 for First Class and 2 for Economy Class." );
-        //create message
-        String message = String.format( "Thank you. You have chosen %s class.", action );
-        //display message
-        JOptionPane.showMessageDialog( null, message ); 
-        assignSeats( action );
-    }
+import java.util.Scanner;
+public class Planeticket
+{
+	public static void main(String args[])
+	{
+		boolean EconArray[] = new boolean[5]; // boolean array with 5 elements
+		boolean FirstArray[] = new boolean[5];
+		Scanner input = new Scanner(System.in);
+		int value;
+			for(int i =0; i < 10; i++)
+			{
+			System.out.print("Please Enter 1 for First Class or Enter 2 for Economy:");
+			value = input.nextInt();
+				if( value == (1))
+				{
+					EconArray[i] = true;
+					System.out.println("Your Economy ticket has been booked\n");
+				}
+				else
+				System.out.println("Economy is full would you like to upgrade to first class?");
+				if(value == (2))
+				{
+					FirstArray[i] = true;
+					System.out.println("Your First class ticket has been booked\n");
+					break;
+				}
+			}
+	}
 }
