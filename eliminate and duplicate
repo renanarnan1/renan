@@ -1,29 +1,29 @@
-mport java.util.Scanner;
-public class JavaExample {
-
-    public static void main(String[] args) {
-        System.out.println("How many numbers you want to enter?");
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        /* Declaring array of n elements, the value
-         * of n is provided by the user
-         */
-        double[] arr = new double[n];
-        double total = 0;
-
-        for(int i=0; i<arr.length; i++){
-        	System.out.print("Enter Element No."+(i+1)+": ");
-        	arr[i] = scanner.nextDouble();
-        }
-        scanner.close();
-        for(int i=0; i<arr.length; i++){
-        	total = total + arr[i];
-        }
-
-
-        
-        double average = total / arr.length;
-        
-        System.out.format("The average is: %.3f", average);
-    }
-}
+public class RemoveDuplicateInArrayExample{  
+public static int removeDuplicateElements(int arr[], int n){  
+        if (n==0 || n==1){  
+            return n;  
+        }  
+        int[] temp = new int[n];  
+        int j = 0;  
+        for (int i=0; i<n-1; i++){  
+            if (arr[i] != arr[i+1]){  
+                temp[j++] = arr[i];  
+            }  
+         }  
+        temp[j++] = arr[n-1];     
+        // Changing original array  
+        for (int i=0; i<j; i++){  
+            arr[i] = temp[i];  
+        }  
+        return j;  
+    }  
+       
+    public static void main (String[] args) {  
+        int arr[] = {10,20,20,30,30,40,50,50};  
+        int length = arr.length;  
+        length = removeDuplicateElements(arr, length);  
+        //printing array elements  
+        for (int i=0; i<length; i++)  
+           System.out.print(arr[i]+" ");  
+    }  
+}  
