@@ -1,19 +1,38 @@
-import java.util.*;
-public class Lab9Tut12{
-public static void main (String[]args){
-    int [] numbers = new int[10];
-    //int length = 10;
-    int[] temp = new int[length];
-    for(int i=0;i<10;i++){
-        numbers [i] = (int)(Math.random()*6+1);
-        System.out.print(numbers [i]);
-        System.out.println();
+//ex 7.19 p 333 deitel and deitel
+//SeatsTest.java
+import javax.swing.JOptionPane;
+public class SeatsTest{
+    public static void main( String[] args ){
+        Seats seatingPlan = new Seats();
+         
+         
+        //display message
+        String action = JOptionPane.showInputDialog( "Please type 1 for First Class" + 
+                 +" and 2 for Economy Class, 0 to quit" );
+        //create message            
+        String message = String.format( "Thank you. You have chosen %s class.", action );
+        //display message
+        JOptionPane.showMessageDialog( null, message );     
+        String seatFlag = ''; //to indicate whether the plane is full or not
+        while(action != 0){         
+            seatFlag = seatingPlan.assignFirstSeats( action );
+            if(seatFlag == 'full'){
+                break;
+            }
+            //ask for input again
+            action = JOptionPane.showInputDialog( "More seats? Please type 1"  +
+                        + " for First Class and 2 for Economy Class, 0 to quit" );
+            //create message            
+            message = String.format( "Thank you. You have chosen %s class.", action );
+            //display message
+            JOptionPane.showMessageDialog( null, message );         
+        }
+                         
+            if(action == 0){
+                System.out.print("You are exiting the application. Thank you.\n");
+            }
+            else if(seatFlag == 'full'){
+                System.out.print("Plane is full. Thank you.\n");
+            }
     }
-    for(int i=1;i<10;i++){
-       if(numbers[i-1]!=numbers[i]){
-         temp[i]= numbers[i];
-         //length--;
-       }
-    }
-    System.out.println(Arrays.toString(temp));
 }
