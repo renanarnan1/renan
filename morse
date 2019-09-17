@@ -1,0 +1,130 @@
+import java.util.Scanner;
+
+public class Program
+{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String mp = sc.nextLine();
+        sc.close();
+        String[] mc = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----."};
+        char[] np = mp.toCharArray();
+
+        System.out.println(mp);
+        System.out.println();
+        for (int i=0; i<=np.length-1; i++) {
+            switch (Character.toUpperCase(np[i])) {
+                case 'A':
+                System.out.print(mc[0] + "  ");
+                break;
+                case 'B':
+                System.out.print(mc[1] + "  ");
+                break;
+                case 'C':
+                System.out.print(mc[2] + "  ");
+                break;
+                case 'D':
+                System.out.print(mc[3] + "  ");
+                break;
+                case 'E':
+                System.out.print(mc[4] + "  ");
+                break;
+                case 'F':
+                System.out.print(mc[5] + "  ");
+                break;
+                case 'G':
+                System.out.print(mc[6] + "  ");
+                break;
+                case 'H':
+                System.out.print(mc[7] + "  ");
+                break;
+                case 'I':
+                System.out.print(mc[8] + "  ");
+                break;
+                case 'J':
+                System.out.print(mc[9] + "  ");
+                break;
+                case 'K':
+                System.out.print(mc[10] + "  ");
+                break;
+                case 'L':
+                System.out.print(mc[11] + "  ");
+                break;
+                case 'M':
+                System.out.print(mc[12] + "  ");
+                break;
+                case 'N':
+                System.out.print(mc[13] + "   ");
+                break;
+                case 'O':
+                System.out.print(mc[14] + "  ");
+                break;
+                case 'P':
+                System.out.print(mc[15] + "  ");
+                break;
+                case 'Q':
+                System.out.print(mc[16] + "  ");
+                break;
+                case 'R':
+                System.out.print(mc[17] + "  ");
+                break;
+                case 'S':
+                System.out.print(mc[18] + "  ");
+                break;
+                case 'T':
+                System.out.print(mc[19] + "  ");
+                break;
+                case 'U':
+                System.out.print(mc[20] + "  ");
+                break;
+                case 'V':
+                System.out.print(mc[21] + "  ");
+                break;
+                case 'W':
+                System.out.print(mc[22] + "  ");
+                break;
+                case 'X':
+                System.out.print(mc[23] + "  ");
+                break;
+                case 'Y':
+                System.out.print(mc[24] + "  ");
+                break;
+                case 'Z':
+                System.out.print(mc[25] + "  ");
+                break;
+                case '0':
+                System.out.print(mc[26] + "  ");
+                break;
+                case '1':
+                System.out.print(mc[27] + "  ");
+                break;
+                case '2':
+                System.out.print(mc[28] + "  ");
+                break;
+                case '3':
+                System.out.print(mc[29] + "  ");
+                break;
+                case '4':
+                System.out.print(mc[30] + "  ");
+                break;
+                case '5':
+                System.out.print(mc[31] + "  ");
+                break;
+                case '6':
+                System.out.print(mc[32] + "  ");
+                break;
+                case '7':
+                System.out.print(mc[33] + "  ");
+                break;
+                case '8':
+                System.out.print(mc[34] + "  ");
+                break;
+                case '9':
+                System.out.print(mc[35] + "  ");
+                break;
+                case ' ':
+                System.out.print("  ");
+                
+            }
+        }
+    }
+}
