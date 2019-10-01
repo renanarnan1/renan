@@ -1,0 +1,18 @@
+//addtion program
+
+import javax.swing.JOptionPane
+
+public class Addition{
+
+    public static void main (String[] args){
+    
+          String firstNumber=JOptionPane.showInputDialog("Enter first integer");
+          Sting secondNumber=JOptionPane.showInputDialog("Enter second integer");
+          
+          int number1=Integer.parselut(firstNumber);
+          int number2=Integer.parselut(secondNumber);
+          int sum = number1 + number2;
+          
+          JOptionPane.showMessageDialog(null,"The sum is" +sum, "Sum of Two Integers", JOptionPane.PLAIN_MESSAGE);
+          }
+}
