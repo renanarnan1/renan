@@ -1,0 +1,432 @@
+import javax.swing.*;   
+import javax.swing.event.*;   
+import java.awt.SystemColor;   
+import java.awt.Color;   
+import javax.swing.border.*;   
+import java.awt.Dimension;   
+import java.awt.*;   
+import java.*;   
+import java.awt.event.*;   
+import java.io.*;   
+import java.net.*;   
+import java.util.*;   
+import java.text.*;   
+   
+//import com.borland.   
+   
+// import com.borland.jbcl.layout.*;   
+   
+/**  
+ * <p>Title: </p>  
+ * <p>Description: </p>  
+ * <p>Copyright: Copyright (c) 2005</p>  
+ * <p>Company: </p>  
+ * @author not attributable  
+ * @version 1.0  
+ */   
+   
+public class Menu extends JFrame implements ActionListener{   
+   
+  private InputStream in;   
+  private Socket socket;   
+  private OutputStream out;   
+  private int character;   
+   
+  private AcceptConnectionForKitchen accept_connection_for_kitchen;   
+  private  ReceiveReadyFood readyFood;   
+  private Waiters_Tables waiters_tables;   
+   
+  private FoodOrder food_order_array;   
+  private JLabel lWelcome=new JLabel("Welcome To Use Food Order System",SwingConstants.CENTER);   
+  private JLabel lOrder=new JLabel("Order No");   
+  private JLabel lTable=new JLabel("Table No");   
+  private JLabel lWaiter=new JLabel("Waiter No");   
+  private JLabel lDate=new JLabel("Date :");   
+  private JLabel lFood=new JLabel("Food List",SwingConstants.CENTER);   
+  private JLabel lSelectedFood=new JLabel("Selected Food",SwingConstants.CENTER);   
+  private JLabel lQuantity=new JLabel("Quality");   
+   
+  private JTextField tOrder=new JTextField();   
+  private JTextField tWaiter=new JTextField();   
+  private JTextField tFood1=new JTextField();   
+  private JTextField tFood2=new JTextField();   
+  private JTextField tFood3=new JTextField();   
+  private JTextField tFood4=new JTextField();   
+  private JTextField tFood5=new JTextField();   
+  private JTextField tFood6=new JTextField();   
+  private JTextField tQuantity1=new JTextField("1");   
+  private JTextField tQuantity2=new JTextField("1");   
+  private JTextField tQuantity3=new JTextField("1");   
+  private JTextField tQuantity4=new JTextField("1");   
+  private JTextField tQuantity5=new JTextField("1");   
+  private JTextField tQuantity6=new JTextField("1");   
+  private Vector QuantityArray=new Vector();   
+  private Vector FoodArray=new Vector();   
+  private DefaultListModel FoodListModel=new DefaultListModel();   
+  private JList allFoodList=new JList(FoodListModel);   
+   
+  private JButton bAdd=new JButton("=>");   
+  private JButton bMinus=new JButton("<=");   
+  private JButton bSubmit=new JButton("Submit");   
+  private JComboBox tableNo = new JComboBox();   
+   
+  public static void main(String[] args)   
+  {   
+    JFrame.setDefaultLookAndFeelDecorated(true);   
+    Menu menu = new Menu();   
+    menu.setSize(500,400);   
+    menu.setTitle("Waiter");   
+    menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
+    menu.setVisible(true);   
+  }   
+  public Menu()   
+  {   
+   
+   //initialize the value for QuantityArray   
+    this.QuantityArray.add(tQuantity1);   
+    this.QuantityArray.add(tQuantity2);   
+    this.QuantityArray.add(tQuantity3);   
+    this.QuantityArray.add(tQuantity4);   
+    this.QuantityArray.add(tQuantity5);   
+    this.QuantityArray.add(tQuantity6);   
+    //initialize the value for FoodArray   
+    this.FoodArray.add(tFood1);   
+    this.FoodArray.add(tFood2);   
+    this.FoodArray.add(tFood3);   
+    this.FoodArray.add(tFood4);   
+    this.FoodArray.add(tFood5);   
+    this.FoodArray.add(tFood6);   
+    //get date from the system   
+    Date date=new Date();   
+    SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yy");   
+    this.lDate.setText("Date: "+formatter.format(date).toString());   
+   
+   //panel1 contains all nnumbers(order no, tale no, waiter no)   
+    JPanel p1=new JPanel(new GridLayout(3,2));   
+    p1.add(lOrder);   
+    p1.add(tOrder);   
+    p1.add(lTable);   
+    p1.add(tableNo);   
+    p1.add(lWaiter);   
+    p1.add(tWaiter);   
+   
+    //panel11 contains date and submit   
+    JPanel p11=new JPanel(new GridLayout(3,1));   
+    p11.add(lDate);   
+    p11.add(bSubmit);   
+   
+    //panel2  contains panel1 and apnel11   
+    JPanel p2=new JPanel(new GridLayout(1,2));   
+    p2.add(p1);   
+    p2.add(p11);   
+   
+    //panel3 contains welcome label and p2   
+    JPanel p3=new JPanel();   
+    p3.setLayout(new BorderLayout(5,10));   
+    p3.add(lWelcome,BorderLayout.NORTH);   
+    p3.add(p2,BorderLayout.CENTER);   
+   
+    //panel4 contains food list   
+    JPanel p4=new JPanel();   
+    JScrollPane scrollPane = new JScrollPane(allFoodList);   
+    p4.setLayout(new BorderLayout(5,10));   
+    p4.add(lFood,BorderLayout.NORTH);   
+    p4.add(scrollPane,BorderLayout.CENTER);   
+   
+    //panel5 contains two buttons(add and minus)   
+    JPanel p5=new JPanel(new GridLayout(2,1));   
+    p5.add(bAdd);   
+    p5.add(bMinus);   
+   
+    //panel6 contains all the selected food   
+    JPanel p6=new JPanel(new GridLayout(7,1));   
+    p6.add(lSelectedFood);   
+    p6.add(tFood1);   
+    p6.add(tFood2);   
+    p6.add(tFood3);   
+    p6.add(tFood4);   
+    p6.add(tFood5);   
+    p6.add(tFood6);   
+    tFood1.setText(" ");   
+    tFood2.setText(" ");   
+    tFood3.setText(" ");   
+    tFood4.setText(" ");   
+    tFood5.setText(" ");   
+    tFood6.setText(" ");   
+   
+    //panel7 contains all the quality value   
+    JPanel p7=new JPanel(new GridLayout(7,1));   
+    p7.add(lQuantity);   
+    p7.add(tQuantity1);   
+    p7.add(tQuantity2);   
+    p7.add(tQuantity3);   
+    p7.add(tQuantity4);   
+    p7.add(tQuantity5);   
+    p7.add(tQuantity6);   
+   
+    //panel8 contains panel6(selected food) and panel7(quality)   
+    JPanel p8=new JPanel();   
+    p8.setLayout(new BorderLayout(5,10));   
+    p8.add(p6,BorderLayout.CENTER);   
+    p8.add(p7,BorderLayout.EAST);   
+   
+    //panel9 contains p4(food list) and p5(two buttons)   
+    JPanel p9=new JPanel();   
+    p9.setLayout(new BorderLayout(5,10));   
+    p9.add(p4,BorderLayout.CENTER);   
+    p9.add(p5,BorderLayout.EAST);   
+   
+    //panel10 contains p8 and p9   
+    JPanel p10=new JPanel(new GridLayout(1,2));   
+    p10.add(p9);   
+    p10.add(p8);   
+   
+    //getContentPane().add(p10);   
+   // content contains p3 and p10   
+   getContentPane().setLayout(new BorderLayout(5,10));   
+   getContentPane().add(p3, BorderLayout.NORTH);   
+   getContentPane().add(p10, BorderLayout.CENTER);   
+   // add ActionListener for bSubmit button and tWaiter textfield   
+   this.tWaiter.addActionListener(this);   
+   this.bSubmit.addActionListener(this);   
+   this.bAdd.addActionListener(this);   
+   this.bMinus.addActionListener(this);   
+    ConnectToServer();   
+   
+    accept_connection_for_kitchen=new AcceptConnectionForKitchen(8764);   
+    accept_connection_for_kitchen.start();   
+    readyFood=new ReceiveReadyFood(this);   
+   
+  }   
+  public void actionPerformed(ActionEvent e)   
+  {   
+    if(e.getSource()==this.tWaiter)   
+    {   
+      if (this.tWaiter.getText()!="")   
+      {   
+        this.tableNo.removeAllItems();   
+        for (int i=0;i<12;i++)   
+        {   
+          if(waiters_tables.Waiters_Tables_Array[i][1].equals(this.tWaiter.getText()))   
+          {   
+              this.tableNo.addItem(waiters_tables.Waiters_Tables_Array[i][0]);   
+          }   
+        }   
+      }   
+    }   
+   
+    if (e.getSource()==this.bSubmit)   
+    {   
+   
+      for (int i=0;i<FoodArray.size(); i++)   
+      {  if (!((JTextField)FoodArray.get(i)).getText().equals(" "))   
+          {String food=((JTextField)FoodArray.elementAt(i)).getText();   
+          String quantity=((JTextField)QuantityArray.elementAt(i)).getText();   
+          SubmitOrderedFood submit_ordered_food = new SubmitOrderedFood(this.out, this.getOrderNo(),this.getTableNo(),food,quantity,this.getPrice(food),this.lDate.getText());   
+          submit_ordered_food.Submit();   
+          accept_connection_for_kitchen.SendOrderToKitchen(this.getOrderNo(),this.getWaiterNo(),this.getTableNo(),food,quantity);   
+          }   
+      }   
+    }   
+    if (e.getSource()==this.bAdd)   
+    {   
+        int[] selected_food_indices = allFoodList.getSelectedIndices();   
+        for (int i=0;i<selected_food_indices.length; i++)   
+      {   
+          String food=FoodListModel.elementAt(selected_food_indices[i]).toString();   
+   
+          if(tFood1.getText().equals(" "))   
+              tFood1.setText(food);   
+          else if(tFood2.getText().equals(" "))   
+              tFood2.setText(food);   
+          else if(tFood3.getText().equals(" "))   
+              tFood3.setText(food);   
+          else if(tFood4.getText().equals(" "))   
+              tFood4.setText(food);   
+          else if(tFood5.getText().equals(" "))   
+              tFood5.setText(food);   
+          else if(tFood6.getText().equals(" "))   
+              tFood6.setText(food);   
+      }   
+   
+   
+    }   
+    if (e.getSource()==this.bMinus)   
+    {   
+        tFood1.setText(" ");   
+        tFood2.setText(" ");   
+        tFood3.setText(" ");   
+        tFood4.setText(" ");   
+        tFood5.setText(" ");   
+        tFood6.setText(" ");   
+        allFoodList.clearSelection();   
+        allFoodList.removeAll();   
+   
+    }   
+  }   
+   
+  public void Query_Waiters_Tables_Database(Socket socket, InputStream in, OutputStream out)   
+  {   
+    waiters_tables = new Waiters_Tables(socket,in,out);   
+    for(int i=0;i<12;i++)   
+    {   
+      this.tableNo.addItem( waiters_tables.Waiters_Tables_Array[i][0]);   
+    }   
+  }   
+   
+  public void Query_FoodOrder_Database(Socket socket, InputStream in, OutputStream out)   
+  {   
+   
+   food_order_array  = new FoodOrder(socket,in,out);   
+   
+    for(int i=0;i<100;i++)   
+    {   
+      if(food_order_array.FoodOrder_Array[i][0]!=null)   
+      this.FoodListModel.addElement(food_order_array.FoodOrder_Array[i][0]);   
+    }   
+  }   
+  public String getOrderNo()   
+  {   
+    return this.tOrder.getText();   
+  }   
+  public String getWaiterNo()   
+  {   
+    return this.tWaiter.getText();   
+  }   
+  public String getTableNo()   
+  {   
+    return this.tableNo.getSelectedItem().toString();   
+  }   
+   
+  public String getPrice(String food)   
+   {   
+       String Price="";   
+       for(int i=0;i<100;i++)   
+       {   
+           if(this.food_order_array.FoodOrder_Array[i][0]!=null)   
+           {   
+   
+   
+               if (this.food_order_array.FoodOrder_Array[i][0].equals(food))   
+                   Price = this.food_order_array.FoodOrder_Array[i][1];   
+           }   
+       }   
+   
+       return Price;   
+  }   
+   
+   
+   
+      public void ConnectToServer()   
+      {   
+        try   
+        {   
+          socket = new Socket("127.0.0.1",8765);   
+          in = socket.getInputStream();   
+          out = socket.getOutputStream();   
+          Query_Waiters_Tables_Database(socket,in,out);   
+          Query_FoodOrder_Database(socket,in,out);   
+          //socket.close();   
+        }   
+        catch(Exception ex)   
+        {   
+            ex.printStackTrace();   
+        }   
+   
+        //Query_Food_Database(socket,in,out);   
+   
+      }   
+   
+   
+   
+  class AcceptConnectionForKitchen extends Thread   
+  {   
+    private ServerSocket socketForKitchen;   
+    private PrintWriter outForKitchen;   
+    private BufferedReader inForKitchen ;   
+    private String s;   
+    private Socket insocketForKitchen;   
+    public AcceptConnectionForKitchen(int port)   
+    {   
+   
+        try   
+        {   
+            this.socketForKitchen = new ServerSocket(port);   
+        }   
+        catch (IOException ex)   
+        {   
+        }   
+   
+    }   
+    public void run()   
+    {   
+      try{   
+        insocketForKitchen = this.socketForKitchen.accept();   
+   
+      }   
+      catch(Exception ex){ex.printStackTrace();}   
+    }   
+   
+    public void SendOrderToKitchen(String OrderNo,String WaiterNo,String tableNo,String Food,String Quantity)   
+    {   
+      s=OrderNo+"_"+tableNo+"_"+WaiterNo+"_"+Food+"_"+Quantity;   
+      try{   
+        inForKitchen = new BufferedReader(new InputStreamReader(insocketForKitchen.getInputStream()));   
+        outForKitchen = new PrintWriter(insocketForKitchen.getOutputStream(),true);   
+        outForKitchen.println(s+ (char)255);   
+        readyFood.setReader(inForKitchen);   
+        readyFood.start();   
+   
+      }   
+      catch(Exception ex){}   
+   
+    }   
+    public BufferedReader getReader()   
+    {   
+      return this.inForKitchen;   
+    }   
+  }   
+   
+  class ReceiveReadyFood extends Thread   
+  {   
+    private boolean active;   
+    private BufferedReader reader;   
+    private JFrame menu;   
+    public ReceiveReadyFood(JFrame menu)   
+    {   
+   
+   
+      this.menu=menu;   
+    }   
+    public void setReader(BufferedReader reader)   
+    {   
+      this.reader=reader;   
+    }   
+    public void run()   
+    {   
+      // String instring=reader.readLine();   
+   
+      active=true;   
+      while(active)   
+      {   
+        try   
+        {   
+          String instring=reader.readLine();   
+          System.out.println("FoodReady "+instring);   
+          for(int i=0;i<tableNo.getItemCount();i++)   
+          {   
+            if(instring.equals(tableNo.getItemAt(i).toString()))   
+              JOptionPane.showMessageDialog(menu,"Food is ready!","For table "+instring,JOptionPane.INFORMATION_MESSAGE);   
+          }   
+        }   
+        catch(Exception ex){ex.printStackTrace();}   
+   
+      }   
+    }   
+  }   
+   
+   
+    public client.Menu.ReceiveReadyFood getReadyFood() {   
+        return readyFood;   
+    }   
+}
