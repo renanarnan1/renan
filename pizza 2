@@ -1,0 +1,75 @@
+package buttontest;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+/**
+ *
+ * @author noorulrafiedza
+ */
+public class ButtonTest extends JFrame {
+private JButton  Button , Button1,b;
+private JPanel Group;
+private JCheckBox cek1;
+private JCheckBox a1,a2,a3,a4;
+private JPanel pnl1;
+private JLabel lab1;
+private JTextField text,text1,text2,text3;
+private int score=0;
+public ButtonTest(){
+    super("Ordering System");
+    Container c = getContentPane();
+    c.setLayout(new FlowLayout());
+   pnl1 = new JPanel(); 
+   lab1=new JLabel("Room Number:");
+   text=new JTextField("Blok");
+   text1=new JTextField("Floor");
+   text2=new JTextField("Room");
+   text3=new JTextField("Calculate");
+   String nama=(text.getText());
+   b=new JButton("Order Now");
+    Icon order = new ImageIcon("order.png");
+    Button = new JButton("Welcom to Minah Fast Food Ordering System", order);
+    c.add(Button );
+    cek1 = new JCheckBox("");
+    c.add(cek1);
+    Icon order1 = new ImageIcon("nasilemak.jpg");
+    Button1 = new JButton("Nasi Lemak", order1);
+    c.add(Button1);
+}
+   public void Button(){
+    setLayout(null);
+    Button.setBounds(50,2,600,60);
+    Button1.setBounds(50,120,200,60);
+    lab1.setBounds(10,70,100,60);
+    add(lab1);
+    text.setBounds(150,90,40,20);
+    add(text);
+    text1.setBounds(200,90,40,20);
+    add(text1);
+    text2.setBounds(250,90,40,20);
+    add(text2);
+    text3.setBounds(0,365,720,80);
+    add(text3);
+    b.setBounds(0,345,720,20);
+   add(b);  
+    cek1.setBounds(30,120,20,30);
+    add(cek1);
+    setSize(720, 480);
+    setVisible(true);
+   }
+public void actionPerformed(ActionEvent ae) {
+     if(ae.getSource() == cek1){
+     }
+    if(ae.getSource() == cek1){
+    System.exit(0);
+    }
+**Can help me ? i make orderng system but it cant calculate**    
+}
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+      ButtonTest application = new ButtonTest();
+      application.Button();
+    } 
+}
